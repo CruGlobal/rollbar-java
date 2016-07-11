@@ -135,4 +135,15 @@ public class RollbarSerializerTest {
             throw new Exception("Wrapper Exception", e);
         }
     }
+
+    @Test
+    public void testSerializeString()
+    {
+        String needsEscaping = "{\"color\": \"blue\", \"size\":12}";
+        StringBuilder builder = new StringBuilder();
+        RollbarSerializer.serializeString(builder, needsEscaping);
+        String serialized = builder.toString();
+        assertEquals("\"{\\\"color\\\": \\\"blue\\\", \\\"size\\\":12}\"", serialized);
+    }
+
 }
