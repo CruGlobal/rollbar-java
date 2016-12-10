@@ -43,8 +43,18 @@ public class PayloadSender implements Sender {
      * @throws MalformedURLException if url is not a valid URL
      */
     public PayloadSender(String url) throws ArgumentNullException, MalformedURLException {
+        this(new URL(Validate.isNotNull(url, "url")));
+    }
+
+
+    /**
+     * Constructor
+     * @param url The Rollbar endpoint to POST items to.
+     * @throws ArgumentNullException if url is null
+     */
+    public PayloadSender(URL url) throws ArgumentNullException {
         Validate.isNotNull(url, "url");
-        this.url = new URL(url);
+        this.url = url;
     }
 
     /**
