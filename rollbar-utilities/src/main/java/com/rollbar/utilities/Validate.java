@@ -50,14 +50,19 @@ public final class Validate {
 
     /**
      * Asserts that the argument is not null.
+     * This returns the passed-in argument, so that this method can be used in
+     * {@code this} and {@code super} constructor expressions.
+     *
      * @param data the object to test
      * @param name the name of the argument that's being tested
      * @param <T> the type of the object being tested
+     * @return the given object
      * @throws ArgumentNullException if {@code data} is null
      */
-    public static <T> void isNotNull(T data, String name) throws ArgumentNullException {
+    public static <T> T isNotNull(T data, String name) throws ArgumentNullException {
         if (data == null) {
             throw new ArgumentNullException(name);
         }
+        return data;
     }
 }

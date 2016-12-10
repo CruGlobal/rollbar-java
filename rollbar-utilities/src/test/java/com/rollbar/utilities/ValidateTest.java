@@ -80,4 +80,11 @@ public class ValidateTest {
         }
     }
 
+    @Test
+    public void testIsNotNullReturnsArg() throws Exception {
+        Object data = new Object();
+        Object returned = Validate.isNotNull(data, "argName");
+        Assert.assertTrue("returned data is not identical to argument data", data == returned);
+    }
+
 }
