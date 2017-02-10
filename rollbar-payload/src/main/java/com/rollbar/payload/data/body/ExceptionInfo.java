@@ -57,7 +57,7 @@ public class ExceptionInfo implements JsonSerializable {
      */
     public static ExceptionInfo fromThrowable(Throwable error, String description) throws ArgumentNullException {
         Validate.isNotNull(error, "error");
-        String className = error.getClass().getSimpleName();
+        String className = error.getClass().getName();
         String message = error.getMessage();
         return new ExceptionInfo(className, message, description);
     }

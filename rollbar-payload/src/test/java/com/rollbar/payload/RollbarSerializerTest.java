@@ -51,7 +51,7 @@ public class RollbarSerializerTest {
             JsonObject parsed = (JsonObject) new JsonParser().parse(json);
             assertEquals(accessToken, parsed.get("access_token").getAsString());
             assertEquals(environment, parsed.getAsJsonObject("data").get("environment").getAsString());
-            assertEquals("Exception", parsed.getAsJsonObject("data").getAsJsonObject("body").getAsJsonObject("trace").getAsJsonObject("exception").get("class").getAsString());
+            assertEquals("java.lang.Exception", parsed.getAsJsonObject("data").getAsJsonObject("body").getAsJsonObject("trace").getAsJsonObject("exception").get("class").getAsString());
             assertEquals("Non Chained Exception", parsed.getAsJsonObject("data").getAsJsonObject("body").getAsJsonObject("trace").getAsJsonObject("exception").get("message").getAsString());
 
             final JsonArray frames = parsed.getAsJsonObject("data").getAsJsonObject("body").getAsJsonObject("trace").getAsJsonArray("frames");

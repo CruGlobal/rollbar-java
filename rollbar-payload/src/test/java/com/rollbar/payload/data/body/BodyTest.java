@@ -18,7 +18,7 @@ public class BodyTest {
         assertNotNull(fromErr);
         assertNotNull(fromErr.trace());
         assertNotNull(fromErr.trace().exception());
-        assertEquals("RuntimeException", fromErr.trace().exception().className());
+        assertEquals("java.lang.RuntimeException", fromErr.trace().exception().className());
         assertEquals("TRICKY!", fromErr.trace().exception().message());
         assertTrue(fromErr.trace().frames().length > 2);
     }
@@ -31,9 +31,9 @@ public class BodyTest {
         assertNotNull(fromErr.traceChain());
         assertNotNull(fromErr.traceChain().traces());
         assertEquals(2, fromErr.traceChain().traces().length);
-        assertEquals("RuntimeException", fromErr.traceChain().traces()[1].exception().className());
+        assertEquals("java.lang.RuntimeException", fromErr.traceChain().traces()[1].exception().className());
         assertEquals("TRICKY!", fromErr.traceChain().traces()[1].exception().message());
-        assertEquals("IllegalStateException", fromErr.traceChain().traces()[0].exception().className());
+        assertEquals("java.lang.IllegalStateException", fromErr.traceChain().traces()[0].exception().className());
         assertEquals("Nested Tricky!", fromErr.traceChain().traces()[0].exception().message());
     }
 
