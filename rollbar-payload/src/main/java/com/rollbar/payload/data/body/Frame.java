@@ -98,12 +98,23 @@ public class Frame implements JsonSerializable {
      * @throws ArgumentNullException if stackTraceElement is null
      */
     public static Frame fromStackTraceElement(StackTraceElement stackTraceElement) throws ArgumentNullException {
-        String filename = stackTraceElement.getFileName();
-        Integer lineNumber = stackTraceElement.getLineNumber();
+        String filename = determineFilename(stackTraceElement);
+        Integer lineNumber = stackTraceElement.getLineNumber() < 0 ? null : stackTraceElement.getLineNumber();
         String method = stackTraceElement.getMethodName();
         String className = stackTraceElement.getClassName();
 
         return new Frame(filename, lineNumber, null, method, null, className, null, null, null);
+    }
+
+    private static String determineFilename(StackTraceElement stackTraceElement)
+    {
+        if (stackTraceElement.isNativeMethod()) {
+            return  "Native Method";
+        } else if (stackTraceElement.getFileName() != null){
+            return stackTraceElement.getFileName();
+        } else {
+            return "Unknown Source";
+        }
     }
 
     /**
